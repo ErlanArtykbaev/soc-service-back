@@ -1,13 +1,19 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const config = require('config')
 const mongoose = require('mongoose')
 
 const app = express()
 
-app.use('/api/posts/', require('./routes/posts.routes'))
-
+//PORT from config
 const PORT = config.get('port') || 5000
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use('/api/posts', require('./routes/posts.routes'))
+app.use('/api/admin', require('./routes/authAdmin.routes'))
+
+//starting the backend function
 const start = async () => {
 	try{
 		await mongoose.connect(config.get('mongoUrl'), {
@@ -16,7 +22,7 @@ const start = async () => {
 			useCreateIndex: true
 		})
 
-		app.listen(5000, () => {
+		app.listen(PORT, () => {
 			console.log('server is started on server: ' + PORT)
 		})
 	}catch(e){
