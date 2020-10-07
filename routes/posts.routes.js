@@ -3,7 +3,12 @@ const Post = require('../models/Post')
 const router = Router()
 
 router.get('/', async (req, res) => {
-	res.send('hello there is posts')
+	Post.find({}, (err, result) => {
+		if(err){
+			res.status(400).json({message: 'cant find '})
+		}
+		res.send(result)
+	})
 })
 
 router.post('/create', async (req, res) => {
