@@ -12,6 +12,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use('/api/posts', require('./routes/posts.routes'))
 app.use('/api/admin', require('./routes/authAdmin.routes'))
+app.use('/api/projects', require('./routes/projects.routes'))
+app.use('/api/careers', require('./routes/career.routes'))
 
 //starting the backend function
 const start = async () => {
