@@ -3,7 +3,7 @@ const Post = require('../models/Post')
 const router = Router()
 
 // /api/posts/
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
 	Post.find({}, (err, result) => {
 		if(err){
 			res.status(400).json({message: 'cant find '})
