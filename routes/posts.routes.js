@@ -2,6 +2,7 @@ const {Router} = require('express')
 const Post = require('../models/Post')
 const router = Router()
 
+// /api/posts/
 router.get('/', async (req, res) => {
 	Post.find({}, (err, result) => {
 		if(err){
@@ -11,6 +12,7 @@ router.get('/', async (req, res) => {
 	})
 })
 
+// /api/posts/create
 router.post('/create', async (req, res) => {
 	const {title, subtitle, description} = await req.body
 	
