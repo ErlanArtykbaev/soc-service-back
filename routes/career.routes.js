@@ -23,4 +23,13 @@ router.post('/create', async (req, res) => {
 	res.status(200).json({message: 'career created'})
 })
 
+router.delete('/:career_id', (req, res) => {
+	Career.remove({_id: req.param.career_id}, (err) => {
+		if(err){
+			res.status(400).json({message: "in delete something got wrong"})
+		}
+		res.json({message: "career is deleted"})
+	})
+})
+
 module.exports = router
