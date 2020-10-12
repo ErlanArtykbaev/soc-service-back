@@ -22,4 +22,13 @@ router.post('/create', async (req, res) => {
 	res.status(200).json({message: 'post created'})
 })
 
+router.delete('/:post_id', (req, res) => {
+	Post.remove({_id: req.param.post_id}, err => {
+		if(err){
+			res.status(400).json({message: 'in delete something got wrong'})
+		}
+		res.json({message: 'post is deleted'})
+	})
+})
+
 module.exports = router
