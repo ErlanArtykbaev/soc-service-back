@@ -19,3 +19,14 @@ router.get('/', (req, res) => {
 		res.send(result)
 	})
 })
+
+router.delete('/contact_id', (req, res) => {
+	ContactUs.remove({_id: req.param.contact_id}, (err) => {
+		if(err){
+			res.status(400).json({message: 'in delete something got wrong'})
+		}
+		res.json({message: 'contact us id deleted'})
+	})
+})
+
+module.exports = router
