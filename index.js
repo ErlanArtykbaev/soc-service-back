@@ -14,6 +14,7 @@ app.use('/api/posts', require('./routes/posts.routes'))
 app.use('/api/admin', require('./routes/authAdmin.routes'))
 app.use('/api/projects', require('./routes/projects.routes'))
 app.use('/api/careers', require('./routes/career.routes'))
+app.use('/api/contactus', require('./routes/contactUs.routes'))
 
 //starting the backend function
 const start = async () => {

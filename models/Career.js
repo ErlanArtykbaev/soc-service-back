@@ -6,7 +6,7 @@ const schema = new Schema({
 		required: true
 	},
 	salary:{
-		type: String,
+		type: Number,
 		required: true
 	},
 	stackTechnology:{
