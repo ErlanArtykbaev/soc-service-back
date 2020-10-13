@@ -15,9 +15,9 @@ router.get('/', (req, res) => {
 
 // api/careers/create/
 router.post('/create', async (req, res) => {
-	const {title, salary, stackTechnology, requirement, more} = await res.body
+	const {title, salary, stackTechnology, requirement, more} = await req.body
 
-	const newCareer = new Career({title, salary,stackTechnology, requirement, more})
+	const newCareer = new Career({title, salary, stackTechnology, requirement, more})
 	await newCareer.save()
 
 	res.status(200).json({message: 'career created'})
@@ -30,6 +30,16 @@ router.delete('/:career_id', (req, res) => {
 		}
 		res.json({message: "career is deleted"})
 	})
+})
+
+router.put('/:id', (req, res) => {
+	Career.findOneAndUpdate(
+		{id: req.param.id},
+		req.body,
+		{omitUndefined: false, new: true}
+	)
+		.then(book => res.json(book))
+		.catch(err => res.status(400).json(err.message))
 })
 
 module.exports = router
